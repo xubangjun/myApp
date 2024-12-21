@@ -6,8 +6,7 @@ on:
       - main  # 当 PR 合并到 main 分支时触发（可替换为你的主分支名称）
   push:
     branches:
-      - main  # 当有 commit 或 push 到 main 分支时触发
-      - feature/*  # 也可以指定其他分支范围，比如 feature 分支
+      - '*'
 jobs:
   test:
     name: Run Tests
