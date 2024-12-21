@@ -1,6 +1,10 @@
 package com.robot.runnerz.test;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserDto {
     private Long id;
     private String name;
