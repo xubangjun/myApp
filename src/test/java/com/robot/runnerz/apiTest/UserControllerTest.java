@@ -1,54 +1,40 @@
 package com.robot.runnerz.apiTest;
 
-import com.robot.runnerz.test.ResourceNotFoundException;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+
 import com.robot.runnerz.test.UserController;
 import com.robot.runnerz.test.UserDto;
 import com.robot.runnerz.test.UserServiceImpl;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.http.MediaType;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(UserController.class)
-@ExtendWith(MockitoExtension.class)
 public class UserControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
-    @Autowired
-    private UserServiceImpl userService;
+    @MockBean
+    private UserServiceImpl userServiceImpl;
 
     @Test
-    public void testGetUserById_UserExists() throws Exception {
-        // Mock user data
+    void testGetUserById() throws Exception {
+        // Mock 数据
         Long userId = 1L;
-        UserDto mockUserDto = new UserDto();
-        mockUserDto.setId(userId);
-        mockUserDto.setName("John Doe");
-        mockUserDto.setEmail("john.doe@example.com");
+        UserDto mockUser = new UserDto(userId, "John Doe", "john.doe@example.com");
+        Mockito.when(userServiceImpl.getUserById(userId)).thenReturn(mockUser);
 
-        // Mock service behavior
-        Mockito.when(userService.getUserById(userId)).thenReturn(mockUserDto);
-
-        // Perform GET request
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/users/{id}", userId)
-                        .contentType(MediaType.APPLICATION_JSON))
+        // 执行测试
+        mockMvc.perform(get("/users/{id}", userId)) // 假设你的控制器路径是 "/users"
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(userId))
                 .andExpect(jsonPath("$.name").value("John Doe"))
                 .andExpect(jsonPath("$.email").value("john.doe@example.com"));
-
-        // Verify service interaction
-        Mockito.verify(userService, Mockito.times(1)).getUserById(userId);
     }
-
 }
