@@ -55,6 +55,8 @@ jobs:
       - name: Build with Maven
         run: mvn clean package -DskipTests
 
+      - name: List target directory
+        run: ls -l target/
   build-docker:
     name: Build and Push Docker Image
     runs-on: ubuntu-latest
