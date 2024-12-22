@@ -90,6 +90,10 @@ jobs:
 
       - name: Install PostgreSQL client
         run: sudo apt-get install postgresql-client
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: maven-artifacts
       # Install Docker Compose
       - name: Install Docker Compose
         run: |
