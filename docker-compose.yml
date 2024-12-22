@@ -11,6 +11,33 @@ services:
       - "5432:5432"
     networks:
       - app-network
+  app:
+    image: my-java-app:latest
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/postgres  # 连接到 db 服务
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: xubangjun886
+    depends_on:
+      - postgres  # 确保 db 服务先启动
+    ports:
+      - "8080:8080"
+    networks:
+      - app-network  # 确保 app 服务连接到 app-network
+#  flyway:
+#    image: flyway/flyway:latest
+#    depends_on:
+#      - postgres  # 确保 PostgreSQL 服务先启动
+#    environment:
+#      FLYWAY_URL: jdbc:postgresql://postgres:5432/postgres  # 连接 PostgreSQL
+#      FLYWAY_USER: postgres  # 用户名
+#      FLYWAY_PASSWORD: xubangjun886  # 密码
+#      FLYWAY_LOCATIONS: filesystem:/sql  # 定义 SQL 脚本的位置
+#    volumes:
+#      - ./src/main/resources/sql:/sql  # 将项目中的 SQL 脚本挂载到 Flyway 容器的 /sql 目录
+#    command: flyway migrate
+#    networks:
+#      - app-network  # 确保 app 服务连接到 app-network
 
 networks:
   app-network:

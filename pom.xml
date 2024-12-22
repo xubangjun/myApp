@@ -69,6 +69,11 @@
 			<artifactId>postgresql</artifactId>
 			<version>42.3.5</version> <!-- 另一个稳定版本 -->
 		</dependency>
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+			<version>9.0.0</version>
+		</dependency>
     </dependencies>
 
 	<build>

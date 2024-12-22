@@ -63,9 +63,8 @@ jobs:
 
       - name: List target directory
         run: ls -l
-
   run_sql:
-    name: Run All SQL Files
+    name: Run Database Migrations with Docker Compose
     runs-on: ubuntu-latest
     needs: maven_build  # This job depends on the maven_build job
 
@@ -73,7 +72,7 @@ jobs:
       postgres:
         image: postgres:latest
         ports:
-          - 5432:5432
+        - 5432:5432
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: xubangjun886
@@ -85,26 +84,27 @@ jobs:
           --health-retries=5
 
     steps:
-      - name: Checkout code
+      - name: Checkout the code from the repository
         uses: actions/checkout@v3
 
       - name: Install PostgreSQL client
         run: sudo apt-get install postgresql-client
+
       - name: Download build artifacts
         uses: actions/download-artifact@v3
         with:
           name: maven-artifacts
-      # Install Docker Compose
+
       - name: Install Docker Compose
         run: |
           sudo curl -L "https://github.com/docker/compose/releases/download/$(curl -s https://api.github.com/repos/docker/compose/releases/latest | jq -r .tag_name)/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
           sudo chmod +x /usr/local/bin/docker-compose
           docker-compose --version
-      #
-      - name: List target directory
+
+      - name: List the contents of the target directory
         run: ls -l
 
-      - name: Start PostgreSQL and Java application with Docker Compose
+      - name: Start PostgreSQL and Java application using Docker Compose
         run: |
           docker-compose -f docker-compose.yml up -d
           echo "Waiting for PostgreSQL to be ready..."
@@ -114,27 +114,13 @@ jobs:
           done
           echo "PostgreSQL is ready!"
 
-      - name: Debug SQL Files
+      - name: Debug the SQL Files in the Resources Folder
         run: |
-          echo "Listing all .sql files:"
+          echo "Listing all .sql files in the resources folder:"
           find src/main/resources -type f -name "*.sql"
 
-      - name: Run All SQL Files from Resources Folder
-        env:
-          DB_HOST: localhost
-          DB_PORT: 5432
-          DB_USER: postgres
-          DB_PASSWORD: xubangjun886
-          DB_NAME: postgres
-        run: |
-          # Find all .sql files under the resources folder and run each of them
-          find src/main/resources -type f -name "*.sql" | while read sql_file; do
-            echo "Running SQL file: $sql_file"
-            # Copy the SQL file to a temporary location to make sure it's accessible
-            cp "$sql_file" /tmp/
-            # Execute the SQL file using psql
-            PGPASSWORD=$DB_PASSWORD psql -h $DB_HOST -p $DB_PORT -U $DB_USER -d $DB_NAME -f /tmp/$(basename "$sql_file")
-          done
+    # No longer needed to manually run the SQL files because Flyway in Docker Compose handles the migration
+
 
   build-docker:
     name: Build and Push Docker Image

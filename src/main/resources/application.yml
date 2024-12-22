@@ -1,6 +1,8 @@
 server:
-  port: 8080
+  port: 8081
 spring:
+  profiles:
+    active: ${SPRING_PROFILE:local}
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
@@ -9,3 +11,12 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
+  flyway:
+    enabled: ${FLYWAY_ENABLED:true} # ?? Flyway
+    url: jdbc:postgresql://localhost:5432/postgres
+    user: postgres  # ??????
+    password: xubangjun886  # ?????
+    locations: classpath:db/migration  # ????????????? db/migration
+    baseline-on-migrate: true  # ???????? Flyway ?????????????
+    schemas: my_schema  # ????? schema
+    validate-on-migrate: true  # ????????

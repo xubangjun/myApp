@@ -1,0 +1,20 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    url: jdbc:postgresql://runnerz-postgres-1:5432/postgres
+    username: postgres
+    password: xubangjun886
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+  flyway:
+    enabled: ${FLYWAY_ENABLED:true} # 启用 Flyway
+    url: jdbc:postgresql://runnerz-postgres-1:5432/postgres
+    user: postgres  # 数据库用户名
+    password: xubangjun886  # 数据库密码
+    locations: classpath:db/migration  # 指定迁移脚本的位置，默认是 db/migration
+    baseline-on-migrate: true  # 如果数据库尚未有 Flyway 元数据表，自动设置基准版本
+    schemas: my_schema  # 指定使用的 schema
+    validate-on-migrate: true  # 启用迁移脚本校验
