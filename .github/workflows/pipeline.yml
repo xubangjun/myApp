@@ -92,10 +92,14 @@ jobs:
       - name: List target directory
         run: ls -l
 
-      # Build Docker image
+      # Build Docker image with multi-platform support
       - name: Build Docker Image
-        run: docker build -t xubangjun/my-java-app:${{ env.SHORT_SHA }} .
-
-      # Push Docker image to DockerHub
-      - name: Push Docker Image
-        run: docker push xubangjun/my-java-app:${{ env.SHORT_SHA }}
+        run: |
+          docker buildx build --platform linux/amd64,linux/arm64 -t xubangjun/my-java-app:${{ env.SHORT_SHA }} --push .
+#      # Build Docker image
+#      - name: Build Docker Image
+#        run: docker build -t xubangjun/my-java-app:${{ env.SHORT_SHA }} .
+#
+#      # Push Docker image to DockerHub
+#      - name: Push Docker Image
+#        run: docker push xubangjun/my-java-app:${{ env.SHORT_SHA }}
