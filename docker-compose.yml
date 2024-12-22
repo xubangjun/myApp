@@ -12,7 +12,9 @@ services:
     networks:
       - app-network
   app:
-    image: my-java-app:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     environment:
       SPRING_PROFILES_ACTIVE: docker
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/postgres  # 连接到 db 服务
