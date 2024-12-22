@@ -8,7 +8,7 @@ services:
       POSTGRES_PASSWORD: xubangjun886
       POSTGRES_DB: postgres
     ports:
-      - "5432:5432"
+      - "5433:5432"
     networks:
       - app-network
 
@@ -20,7 +20,7 @@ services:
       - postgres
     environment:
       DB_HOST: localhost
-      DB_PORT: 5432
+      DB_PORT: 5433
       DB_USER: postgres
       DB_PASSWORD: xubangjun886
       DB_NAME: postgres
