@@ -77,7 +77,7 @@ jobs:
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: xubangjun886
-          POSTGRES_DB: my_schema
+          POSTGRES_DB: postgres
         options: >-
           --health-cmd="pg_isready -U postgres"
           --health-interval=10s
@@ -107,7 +107,7 @@ jobs:
           DB_PORT: 5432
           DB_USER: postgres
           DB_PASSWORD: xubangjun886
-          DB_NAME: my_schema
+          DB_NAME: postgres
         run: |
           # Find all .sql files under the resources folder and run each of them
           find src/main/resources -type f -name "*.sql" | while read sql_file; do
