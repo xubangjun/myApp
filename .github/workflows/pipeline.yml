@@ -73,7 +73,7 @@ jobs:
       postgres:
         image: postgres:latest
         ports:
-          - 5432:5432
+          - 5433:5432
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: xubangjun886
@@ -122,7 +122,7 @@ jobs:
       - name: Run All SQL Files from Resources Folder
         env:
           DB_HOST: localhost
-          DB_PORT: 5432
+          DB_PORT: 5433
           DB_USER: postgres
           DB_PASSWORD: xubangjun886
           DB_NAME: postgres
