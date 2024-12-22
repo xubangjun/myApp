@@ -77,7 +77,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       #
       - name: List target directory
-        run: ls -l target/
+        run: ls -l
 
       # Build Docker image
       - name: Build Docker Image
