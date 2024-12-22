@@ -13,7 +13,9 @@ services:
       - app-network
 
   java-app:
-    build: .
+    build:
+      context: ./  # 指定 Dockerfile 所在的目录
+      dockerfile: Dockerfile  # 可选项，默认寻找 `Dockerfile`
     depends_on:
       - postgres
     environment:
