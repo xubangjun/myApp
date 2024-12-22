@@ -88,18 +88,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install Dockerize
-        run: |
-          # Download and install dockerize
-          curl -sSL https://github.com/jwilder/dockerize/releases/download/v0.6.1/dockerize-linux-amd64-v0.6.1.tar.gz | tar -xzv
-          sudo mv dockerize /usr/local/bin
+      - name: Install PostgreSQL client
+        run: sudo apt-get install postgresql-client
 
       - name: Wait for PostgreSQL to be ready
         run: |
-          dockerize -wait tcp://localhost:5432 -timeout 2m
-
-      - name: Install PostgreSQL client
-        run: sudo apt-get install postgresql-client
+          # Wait for the PostgreSQL service to be healthy (based on the healthcheck in docker-compose.yml)
+          until pg_isready -h postgres -U postgres; do
+          echo "Waiting for PostgreSQL to be ready..."
+          sleep 2
+          done
 
       - name: Run All SQL Files from Resources Folder
         env:

@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: xubangjun886
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+
+  java-app:
+    build: .
+    depends_on:
+      - postgres
+    environment:
+      DB_HOST: localhost
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: xubangjun886
+      DB_NAME: postgres
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
