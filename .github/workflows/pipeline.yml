@@ -48,8 +48,8 @@ jobs:
 
       # Build Docker image
       - name: Build Docker Image
-        run: docker build -t your-dockerhub-username/your-image-name:latest .
+        run: docker build -t xubangjun.ire@gmail.com/my-java-app:${{ github.sha }} .
 
       # Push Docker image to DockerHub
       - name: Push Docker Image
-        run: docker push your-dockerhub-username/your-image-name:latest
+        run: docker push xubangjun.ire@gmail.com/my-java-app:${{ github.sha }}
