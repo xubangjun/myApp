@@ -98,4 +98,4 @@ jobs:
 
       # Push Docker image to DockerHub
       - name: Push Docker Image
-        run: docker push xubangjun/my-java-app:${{ env.SHORT_SHA }} .
+        run: docker push xubangjun/my-java-app:${{ env.SHORT_SHA }}
