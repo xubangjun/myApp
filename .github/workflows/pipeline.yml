@@ -51,8 +51,8 @@ jobs:
 
       # Build Docker image
       - name: Build Docker Image
-        run: docker build -t xubangjun.ire@gmail.com/my-java-app:${{ env.SHORT_SHA }} .
+        run: docker build -t xubangjun/my-java-app:${{ env.SHORT_SHA }} .
 
       # Push Docker image to DockerHub
       - name: Push Docker Image
-        run: docker push xubangjun.ire@gmail.com/my-java-app:${{ env.SHORT_SHA }} .
+        run: docker push xubangjun/my-java-app:${{ env.SHORT_SHA }} .
