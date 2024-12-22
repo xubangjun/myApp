@@ -97,6 +97,7 @@ jobs:
       - name: Wait for PostgreSQL to be ready
         run: |
           dockerize -wait tcp://localhost:5432 -timeout 2m
+          shell: /usr/bin/bash -e {0}
 
       - name: Install PostgreSQL client
         run: sudo apt-get install postgresql-client
@@ -117,6 +118,8 @@ jobs:
             # Execute the SQL file using psql
             PGPASSWORD=$DB_PASSWORD psql -h $DB_HOST -p $DB_PORT -U $DB_USER -d $DB_NAME -f /tmp/$(basename "$sql_file")
           done
+        shell: /usr/bin/bash -e {0}
+
   build-docker:
     name: Build and Push Docker Image
     runs-on: ubuntu-latest
