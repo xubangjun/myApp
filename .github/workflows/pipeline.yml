@@ -58,7 +58,7 @@ jobs:
   build-docker:
     name: Build and Push Docker Image
     runs-on: ubuntu-latest
-    needs: test  # 依赖测试任务，只有测试成功后才会执行
+    needs: maven_build  # 依赖测试任务，只有测试成功后才会执行
 #    if: github.ref == 'refs/heads/main'
 
     steps:
