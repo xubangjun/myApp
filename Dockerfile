@@ -5,7 +5,7 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # 将打包的 JAR 文件复制到镜像中
-COPY target/runnerz-0.0.1-SNAPSHOT.jar /app/app.jar
+COPY runnerz-0.0.1-SNAPSHOT.jar /app/app.jar
 
 # 暴露应用程序运行的端口（可根据你的应用程序设置）
 EXPOSE 8080
