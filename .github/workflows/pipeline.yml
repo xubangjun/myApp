@@ -107,7 +107,7 @@ jobs:
           DB_PORT: 5432
           DB_USER: postgres
           DB_PASSWORD: xubangjun886
-          DB_NAME: postgres
+          DB_NAME: my_schema
         run: |
           # Find all .sql files under the resources folder and run each of them
           find src/main/resources -type f -name "*.sql" | while read sql_file; do
