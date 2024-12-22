@@ -54,7 +54,7 @@ jobs:
       # Step 4: Run Maven build (mvn clean package)
       - name: Build with Maven
         run: mvn clean package -DskipTests
-
+      #
       - name: List target directory
         run: ls -l target/
   build-docker:
