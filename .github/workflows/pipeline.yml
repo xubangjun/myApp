@@ -145,6 +145,9 @@ jobs:
       - name: Build Docker Image
         run: |
           docker buildx build --platform linux/amd64,linux/arm64 -t xubangjun/my-java-app:${{ env.SHORT_SHA }} --push .
+
+      - name: Save Docker Image Tag
+        run: echo "DOCKER_IMAGE=xubangjun/my-java-app:${{ env.SHORT_SHA }}" >> $GITHUB_ENV
 #      # Build Docker image
 #      - name: Build Docker Image
 #        run: docker build -t xubangjun/my-java-app:${{ env.SHORT_SHA }} .
