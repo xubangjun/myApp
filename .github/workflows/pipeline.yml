@@ -99,6 +99,8 @@ jobs:
             sleep 5
           done
           echo "PostgreSQL is ready!"
+        env:
+          DOCKER_IMAGE: ${{ env.DOCKER_IMAGE }}
 
       - name: Debug the SQL Files in the Resources Folder
         run: |
