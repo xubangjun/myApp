@@ -27,7 +27,8 @@ jobs:
 
       # Run tests
       - name: Run Tests
-        run: mvn test # 替换为你的测试命令，比如 ./gradlew test 或其他语言的测试命令
+        run: FLYWAY_ENABLED=false mvn test
+
   # Job 1: Maven Build
   maven_build:
     runs-on: ubuntu-latest  # 使用 Ubuntu 虚拟机
@@ -64,7 +65,7 @@ jobs:
 
       - name: List target directory
         run: ls -l
-  run_sql:
+  build_docker_compose:
     name: Run Database Migrations with Docker Compose
     runs-on: ubuntu-latest
     needs: build-docker  # This job depends on the maven_build job
