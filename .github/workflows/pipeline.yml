@@ -69,21 +69,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-docker  # This job depends on the maven_build job
 
-    services:
-      postgres:
-        image: postgres:latest
-        ports:
-        - 5432:5432
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: xubangjun886
-          POSTGRES_DB: postgres
-        options: >-
-          --health-cmd="pg_isready -U postgres"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=5
-
     steps:
       - name: Checkout the code from the repository
         uses: actions/checkout@v3
