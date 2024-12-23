@@ -54,7 +54,7 @@ jobs:
 
       # Step 4: Run Maven build (mvn clean package)
       - name: Build with Maven
-        run: FLYWAY_ENABLED=false mvn clean install -Dspring.profiles.active=docker
+        run: FLYWAY_ENABLED=false mvn clean install
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3

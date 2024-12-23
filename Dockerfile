@@ -7,7 +7,7 @@ WORKDIR /app
 # 将打包的 JAR 文件复制到镜像中
 COPY runnerz-0.0.1-SNAPSHOT.jar /app/app.jar
 
-ENV SPRING_PROFILES_ACTIVE=docker
+#ENV SPRING_PROFILES_ACTIVE=docker
 
 # 暴露应用程序运行的端口（可根据你的应用程序设置）
 EXPOSE 8080
