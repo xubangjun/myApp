@@ -1,4 +1,5 @@
-package com.robot.runnerz.test;
+package com.robot.runnerz.example;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,7 @@ public class UserController {
     @Autowired
     private final UserServiceImpl userServiceImpl;
 
+    @Transactional
     @GetMapping("/{id}")
     public ResponseEntity<UserDto> getUserById(@PathVariable Long id) {
         return ResponseEntity.ok(userServiceImpl.getUserById(id));

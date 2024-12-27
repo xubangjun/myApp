@@ -1,4 +1,4 @@
-package com.robot.runnerz.test;
+package com.robot.runnerz.example;
 
 public class UserMapper {
     public static UserDto toDto(User user) {

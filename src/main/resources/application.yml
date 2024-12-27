@@ -12,11 +12,11 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
   flyway:
-    enabled: ${FLYWAY_ENABLED:true} # ?? Flyway
+    enabled: ${FLYWAY_ENABLED:true}
     url: jdbc:postgresql://localhost:5432/postgres
-    user: postgres  # ??????
-    password: xubangjun886  # ?????
-    locations: classpath:db/migration  # ????????????? db/migration
-    baseline-on-migrate: true  # ???????? Flyway ?????????????
-    schemas: my_schema  # ????? schema
-    validate-on-migrate: true  # ????????
+    user: postgres
+    password: xubangjun886
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+    schemas: my_schema
+    validate-on-migrate: true

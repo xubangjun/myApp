@@ -4,9 +4,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
-import com.robot.runnerz.test.UserController;
-import com.robot.runnerz.test.UserDto;
-import com.robot.runnerz.test.UserServiceImpl;
+import com.robot.runnerz.example.UserController;
+import com.robot.runnerz.example.UserDto;
+import com.robot.runnerz.example.UserServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.robot.runnerz.test;
+package com.robot.runnerz.example;
 
 public interface UserService {
 

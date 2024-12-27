@@ -1,4 +1,4 @@
-package com.robot.runnerz.test;
+package com.robot.runnerz.example;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
