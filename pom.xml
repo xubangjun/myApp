@@ -74,6 +74,20 @@
 			<artifactId>flyway-core</artifactId>
 			<version>9.0.0</version>
 		</dependency>
+
+		<!-- Spring Boot Starter for MongoDB -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-mongodb</artifactId>
+		</dependency>
+
+		<!-- Lombok (Optional, for cleaner code) -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+
     </dependencies>
 
 	<build>

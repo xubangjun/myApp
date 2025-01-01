@@ -20,3 +20,8 @@ spring:
     baseline-on-migrate: true
     schemas: my_schema
     validate-on-migrate: true
+
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/myDatabase
+      database: myDatabase
