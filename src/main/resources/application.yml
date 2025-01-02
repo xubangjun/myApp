@@ -21,7 +21,7 @@ spring:
     schemas: my_schema
     validate-on-migrate: true
 
-  data:
-    mongodb:
-      uri: mongodb://mongodb:27017/myDatabase
-      database: myDatabase
+#  data:
+#    mongodb:
+#      uri: mongodb://mongodb:27017/myDatabase
+#      database: myDatabase
