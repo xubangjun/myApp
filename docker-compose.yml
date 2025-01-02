@@ -11,15 +11,25 @@ services:
       - "5432:5432"
     networks:
       - app-network
+
+  mongodb:
+    image: mongo:latest  # 使用官方 MongoDB 镜像
+    ports:
+      - "27017:27017"  # 映射 MongoDB 的默认端口
+    networks:
+      - app-network
+
   app:
-    image: ${DOCKER_IMAGE}
+    image: xubangjun/my-java-app:8ba6921
     environment:
       SPRING_PROFILES_ACTIVE: docker
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/postgres  # 连接到 db 服务
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: xubangjun886
+      SPRING_MONGODB_URI: mongodb://mongodb:27017/myDatabase
     depends_on:
-      - postgres  # 确保 db 服务先启动
+      - postgres
+      - mongodb # 确保 db 服务先启动
     ports:
       - "8080:8080"
     networks:
