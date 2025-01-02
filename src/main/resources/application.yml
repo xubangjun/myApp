@@ -4,7 +4,7 @@ spring:
 #  profiles:
 #    active: ${SPRING_PROFILE:local}
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
+    url: jdbc:postgresql://postgres:5432/postgres
     username: postgres
     password: xubangjun886
     driver-class-name: org.postgresql.Driver
@@ -13,7 +13,7 @@ spring:
 
   flyway:
     enabled: ${FLYWAY_ENABLED:true}
-    url: jdbc:postgresql://localhost:5432/postgres
+    url: jdbc:postgresql://postgres:5432/postgres
     user: postgres
     password: xubangjun886
     locations: classpath:db/migration
