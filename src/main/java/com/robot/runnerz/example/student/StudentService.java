@@ -1,7 +1,5 @@
-package com.robot.runnerz.student;
+package com.robot.runnerz.example.student;
 
-import com.robot.runnerz.example.Student;
-import com.robot.runnerz.student.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

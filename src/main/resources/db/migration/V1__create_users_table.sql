@@ -7,3 +7,4 @@ CREATE TABLE IF NOT EXISTS my_schema.users (
                                                name VARCHAR(255) NOT NULL,
                                                email VARCHAR(255) NOT NULL UNIQUE
 );
+

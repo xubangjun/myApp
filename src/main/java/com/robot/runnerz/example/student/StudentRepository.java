@@ -1,6 +1,5 @@
-package com.robot.runnerz.student;
+package com.robot.runnerz.example.student;
 
-import com.robot.runnerz.example.Student;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 

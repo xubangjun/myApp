@@ -4,15 +4,16 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
-import com.robot.runnerz.example.UserController;
-import com.robot.runnerz.example.UserDto;
-import com.robot.runnerz.example.UserServiceImpl;
+import com.robot.runnerz.example.user.UserController;
+import com.robot.runnerz.example.user.UserDto;
+import com.robot.runnerz.example.user.UserServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
+
+import java.util.HashSet;
 
 @WebMvcTest(UserController.class)
 public class UserControllerTest {
@@ -20,14 +21,13 @@ public class UserControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @MockBean
     private UserServiceImpl userServiceImpl;
 
     @Test
     void testGetUserById() throws Exception {
         // Mock 数据
         Long userId = 1L;
-        UserDto mockUser = new UserDto(userId, "John Doe", "john.doe@example.com");
+        UserDto mockUser = new UserDto(userId, "John Doe", "john.doe@example.com", new HashSet<>());
         Mockito.when(userServiceImpl.getUserById(userId)).thenReturn(mockUser);
 
         // 执行测试

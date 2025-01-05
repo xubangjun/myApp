@@ -1,4 +1,5 @@
-package com.robot.runnerz.example;
+package com.robot.runnerz.example.user;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,6 +23,7 @@ public class UserServiceImpl implements UserService {
         return UserMapper.toDto(savedUser);
     }
 
+    @Transactional
     public UserDto updateUser(Long id, UserDto userDto) {
         User existingUser = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));

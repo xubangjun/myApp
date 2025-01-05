@@ -1,4 +1,4 @@
-package com.robot.runnerz.example;
+package com.robot.runnerz.example.user;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

@@ -1,11 +1,15 @@
-package com.robot.runnerz.example;
+package com.robot.runnerz.example.user;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.antlr.v4.runtime.misc.NotNull;
 
-@AllArgsConstructor
+@Getter
+@Setter
 @NoArgsConstructor
-public class UserDto {
+@AllArgsConstructor
+@Builder
+public class UserRequestEntity {
+    @NotNull
     private Long id;
     private String name;
 
@@ -34,9 +38,4 @@ public class UserDto {
     }
 
     private String email;
-
-    // Getters and Setters
-    // ...
 }
-
-

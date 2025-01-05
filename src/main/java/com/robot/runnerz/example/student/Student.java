@@ -1,4 +1,4 @@
-package com.robot.runnerz.example;
+package com.robot.runnerz.example.student;
 
 import jakarta.persistence.*;
 import lombok.Getter;

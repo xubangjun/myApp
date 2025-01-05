@@ -1,6 +1,5 @@
-package com.robot.runnerz.student;
+package com.robot.runnerz.example.student;
 
-import com.robot.runnerz.example.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

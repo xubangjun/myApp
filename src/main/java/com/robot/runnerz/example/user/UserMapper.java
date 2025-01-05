@@ -1,4 +1,4 @@
-package com.robot.runnerz.example;
+package com.robot.runnerz.example.user;
 
 public class UserMapper {
     public static UserDto toDto(User user) {
@@ -13,6 +13,7 @@ public class UserMapper {
         User user = new User();
         user.setName(dto.getName());
         user.setEmail(dto.getEmail());
+        user.setCars(dto.getCar());
         return user;
     }
 }

@@ -10,7 +10,10 @@ spring:
     driver-class-name: org.postgresql.Driver
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
-
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
   flyway:
     enabled: ${FLYWAY_ENABLED:true}
     url: jdbc:postgresql://localhost:5432/postgres
@@ -23,5 +26,6 @@ spring:
 
   data:
     mongodb:
-      uri: mongodb://mongodb:27017/myDatabase
+      uri: mongodb://localhost:27017/myDatabase
       database: myDatabase
+#uri: mongodb://mongodb:27017/myDatabaselocalhost

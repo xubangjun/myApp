@@ -1,6 +1,7 @@
-package com.robot.runnerz.example;
+package com.robot.runnerz.example.user;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/users")
 @AllArgsConstructor
+@Slf4j
 public class UserController {
 
     @Autowired

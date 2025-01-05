@@ -1,9 +1,12 @@
-package com.robot.runnerz.example;
+package com.robot.runnerz.example.user;
 
+import com.robot.runnerz.example.car.Car;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.Set;
 
 @Entity
 @Table(name = "users", schema = "my_schema")
@@ -22,6 +25,9 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
 
-    // Getters and Setters
-    // ...
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private Set<Car> cars;    // Getters and Setters
+    // ... JsonManagerReference
+    //
 }

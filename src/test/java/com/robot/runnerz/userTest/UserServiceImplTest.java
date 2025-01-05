@@ -1,6 +1,6 @@
 package com.robot.runnerz.userTest;
 
-import com.robot.runnerz.example.*;
+import com.robot.runnerz.example.user.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
