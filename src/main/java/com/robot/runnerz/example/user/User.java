@@ -30,4 +30,14 @@ public class User {
     private Set<Car> cars;    // Getters and Setters
     // ... JsonManagerReference
     //
+
+    public UserResponseEntity toUserResponseEntity(User user) {
+
+        return  UserResponseEntity.builder().
+                id(user.getId()).
+                name(user.getName()).
+                email(user.getEmail()).
+                car(user.getCars()).
+                build();
+    }
 }

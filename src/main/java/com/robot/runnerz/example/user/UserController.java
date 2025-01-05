@@ -18,7 +18,7 @@ public class UserController {
 
     @Transactional
     @GetMapping("/{id}")
-    public ResponseEntity<UserDto> getUserById(@PathVariable Long id) {
+    public ResponseEntity<UserResponseEntity> getUserById(@PathVariable Long id) {
         return ResponseEntity.ok(userServiceImpl.getUserById(id));
     }
 

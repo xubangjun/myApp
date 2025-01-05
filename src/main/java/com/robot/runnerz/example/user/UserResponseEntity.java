@@ -1,14 +1,20 @@
 package com.robot.runnerz.example.user;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import com.robot.runnerz.example.car.Car;
+import lombok.*;
 
+import java.util.Set;
+@NoArgsConstructor
+@AllArgsConstructor
 @Setter
+@Getter
 @Builder
 public class UserResponseEntity {
     private Long id;
+
     private String name;
 
     private String email;
+
+    private Set<Car> car;
 }

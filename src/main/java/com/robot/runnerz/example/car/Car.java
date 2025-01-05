@@ -1,5 +1,6 @@
 package com.robot.runnerz.example.car;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.robot.runnerz.example.user.User;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -28,5 +29,6 @@ public class Car {
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JsonIgnore
     private User user;
 }

@@ -4,9 +4,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
-import com.robot.runnerz.example.user.UserController;
-import com.robot.runnerz.example.user.UserDto;
-import com.robot.runnerz.example.user.UserServiceImpl;
+import com.robot.runnerz.example.user.*;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +25,7 @@ public class UserControllerTest {
     void testGetUserById() throws Exception {
         // Mock 数据
         Long userId = 1L;
-        UserDto mockUser = new UserDto(userId, "John Doe", "john.doe@example.com", new HashSet<>());
+        UserResponseEntity mockUser = new UserResponseEntity(userId, "John Doe", "john.doe@example.com", new HashSet<>());
         Mockito.when(userServiceImpl.getUserById(userId)).thenReturn(mockUser);
 
         // 执行测试

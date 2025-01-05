@@ -11,10 +11,10 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
     }
 
-    public UserDto getUserById(Long id) {
+    public UserResponseEntity getUserById(Long id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
-        return UserMapper.toDto(user);
+        return user.toUserResponseEntity(user);
     }
 
     public UserDto createUser(UserDto userDto) {

@@ -34,7 +34,7 @@ public class UserServiceImplTest {
         Mockito.when(userRepository.findById(userId)).thenReturn(Optional.of(mockUser));
 
         // Call the method under test
-        UserDto userDto = userService.getUserById(userId);
+        UserResponseEntity userDto = userService.getUserById(userId);
 
         // Assertions
         assertNotNull(userDto);

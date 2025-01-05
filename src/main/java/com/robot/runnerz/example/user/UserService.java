@@ -2,7 +2,7 @@ package com.robot.runnerz.example.user;
 
 public interface UserService {
 
-    UserDto getUserById(Long id);
+    UserResponseEntity getUserById(Long id);
 
     UserDto createUser(UserDto userDto);
 

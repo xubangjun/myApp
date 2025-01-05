@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-    // 你可以在这里添加自定义查询方法
+    // add query self define
     Optional<User> findByEmail(String email);
 
 //    @Query("SELECT u FROM User u LEFT JOIN FETCH u.cars WHERE u.id = :userId")
