@@ -1,5 +1,6 @@
 package com.robot.runnerz.example.user;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.robot.runnerz.example.car.Car;
 import lombok.*;
 
@@ -17,4 +18,6 @@ public class UserResponseEntity {
     private String email;
 
     private Set<Car> car;
+
+    private JsonNode data;
 }
