@@ -17,6 +17,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.UUID;
 
 @WebMvcTest(UserController.class)
 public class UserControllerTest {
@@ -40,7 +41,7 @@ public class UserControllerTest {
         // Convert the Map to JsonNode
         JsonNode jsonNode = objectMapper.valueToTree(map);
         // Mock data
-        Long userId = 1L;
+        UUID userId = UUID.randomUUID();
         UserResponseEntity mockUser = new UserResponseEntity(userId, "John Doe", "john.doe@example.com", new HashSet<>(), jsonNode);
         Mockito.when(userServiceImpl.getUserById(userId)).thenReturn(mockUser);
 

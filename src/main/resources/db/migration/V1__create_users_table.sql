@@ -3,23 +3,17 @@ CREATE SCHEMA IF NOT EXISTS my_schema;
 
 -- Create table if it doesn't exist
 CREATE TABLE IF NOT EXISTS my_schema.users (
-                                               id BIGSERIAL PRIMARY KEY,
+                                               id uuid PRIMARY KEY,
                                                name VARCHAR(255) NOT NULL,
-                                               email VARCHAR(255) NOT NULL UNIQUE
+                                               email VARCHAR(255) NOT NULL UNIQUE,
+                                               data jsonb
 );
-
-CREATE TABLE IF NOT EXISTS groups (
-                                      id BIGINT PRIMARY KEY, -- Primary key
-                                      name VARCHAR(255) NOT NULL UNIQUE     -- Unique group name
+-- Create table if it doesn't exist
+CREATE TABLE IF NOT EXISTS my_schema.cars (
+                                              id uuid PRIMARY KEY,
+                                              name VARCHAR(255) NOT NULL,
+                                              model VARCHAR(255) NOT NULL,
+                                              year INTEGER NOT NULL,
+                                              user_id uuid,
+                                              CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES my_schema.users (id) ON DELETE SET NULL
 );
-
-CREATE TABLE IF NOT EXISTS  user_groups (
-                                            user_id BIGINT NOT NULL,  -- Foreign key referencing users table
-                                            group_id BIGINT NOT NULL, -- Foreign key referencing groups table
-                                            PRIMARY KEY (user_id, group_id), -- Composite primary key
-                                            FOREIGN KEY (user_id) REFERENCES my_schema.users(id) ON DELETE CASCADE, -- Maintain referential integrity
-                                            FOREIGN KEY (group_id) REFERENCES groups(id) ON DELETE CASCADE
-);
-
-ALTER TABLE my_schema.users
-    ADD COLUMN data jsonb;

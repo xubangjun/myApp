@@ -1,4 +1,5 @@
 package com.robot.runnerz.example.user;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.robot.runnerz.example.exception.ErrorStatus;
 import com.robot.runnerz.example.exception.ResourceNotFoundException;
@@ -10,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
+import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -20,7 +22,7 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
     }
 
-    public UserResponseEntity getUserById(Long id) {
+    public UserResponseEntity getUserById(UUID id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id, HttpStatus.NOT_FOUND, ErrorStatus.USER_NOT_FOUND));
 
@@ -32,12 +34,14 @@ public class UserServiceImpl implements UserService {
 
     public UserDto createUser(UserDto userDto) {
         User user = UserMapper.toEntity(userDto);
+        JsonNode data = userDto.getData();
+        user.setData(data);
         User savedUser = userRepository.save(user);
         return UserMapper.toDto(savedUser);
     }
 
     @Transactional
-    public UserDto updateUser(Long id, UserDto userDto) {
+    public UserDto updateUser(UUID id, UserDto userDto) {
         User existingUser = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id, HttpStatus.NOT_FOUND, ErrorStatus.USER_NOT_FOUND));
         existingUser.setName(userDto.getName());
@@ -46,7 +50,7 @@ public class UserServiceImpl implements UserService {
         return UserMapper.toDto(updatedUser);
     }
 
-    public void deleteUser(Long id) {
+    public void deleteUser(UUID id) {
         if (!userRepository.existsById(id)) {
             throw new ResourceNotFoundException("User not found with id: " + id, HttpStatus.NOT_FOUND, ErrorStatus.USER_NOT_FOUND);
         }

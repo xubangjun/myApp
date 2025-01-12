@@ -10,6 +10,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -25,7 +26,7 @@ public class UserServiceImplTest {
     @Test
     public void testGetUserById_UserExists() {
         // Mock user data
-        Long userId = 1L;
+        UUID userId = UUID.randomUUID();
         User mockUser = new User();
         mockUser.setId(userId);
         mockUser.setName("John Doe");
@@ -50,7 +51,7 @@ public class UserServiceImplTest {
     @Test
     public void testGetUserById_UserNotFound() {
         // Mock user ID
-        Long userId = 2L;
+        UUID userId = UUID.randomUUID();
 
         // Mock repository behavior
         Mockito.when(userRepository.findById(userId)).thenReturn(Optional.empty());

@@ -5,13 +5,15 @@ import com.robot.runnerz.example.car.Car;
 import lombok.*;
 
 import java.util.Set;
+import java.util.UUID;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
 @Builder
 public class UserResponseEntity {
-    private Long id;
+    private UUID id;
 
     private String name;
 

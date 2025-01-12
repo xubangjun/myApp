@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/users")
 @AllArgsConstructor
@@ -19,7 +21,7 @@ public class UserController {
 
     @Transactional
     @GetMapping("/{id}")
-    public ResponseEntity<UserResponseEntity> getUserById(@PathVariable Long id) {
+    public ResponseEntity<UserResponseEntity> getUserById(@PathVariable UUID id) {
         //TODO add throw 500
         return ResponseEntity.ok(userServiceImpl.getUserById(id));
     }
@@ -30,12 +32,12 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserDto> updateUser(@PathVariable Long id, @RequestBody UserDto userDto) {
+    public ResponseEntity<UserDto> updateUser(@PathVariable UUID id, @RequestBody UserDto userDto) {
         return ResponseEntity.ok(userServiceImpl.updateUser(id, userDto));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteUser(@PathVariable UUID id) {
         userServiceImpl.deleteUser(id);
         return ResponseEntity.noContent().build();
     }
