@@ -50,7 +50,7 @@ public class UserControllerTest {
         // test
         mockMvc.perform(get("/users/{id}", userId)) // 假设你的控制器路径是 "/users"
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(userId))
+                .andExpect(jsonPath("$.id").value(userId.toString()))
                 .andExpect(jsonPath("$.name").value("John Doe"))
                 .andExpect(jsonPath("$.email").value("john.doe@example.com"));
     }
