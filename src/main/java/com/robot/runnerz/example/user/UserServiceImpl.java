@@ -10,6 +10,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -62,5 +64,9 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll(pageable); // Fetch paginated results
     }
 
-
+    public List<User> getAllUsers() {
+        List<User> all = userRepository.findAll();
+        Collections.sort(all);
+        return all;
+    }
 }

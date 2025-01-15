@@ -11,17 +11,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.antlr.v4.runtime.misc.NotNull;
 
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @Table(name = "users", schema = "my_schema")
 @Getter
 @Setter
 @NoArgsConstructor
-public class User {
+public class User implements Cloneable, Comparable<User>{
 
     @Id
     private UUID id;
@@ -71,5 +68,54 @@ public class User {
                 data(user.getData()).
                 groups(user.getGroups()).
                 build();
+    }
+
+    // clone()
+    @Override
+    public User clone() {
+        try {
+            User cloned = (User) super.clone();
+
+            if (this.cars != null) {
+                cloned.setCars(new HashSet<>());
+                for (Car car : this.cars) {
+//                    cloned.getCars().add(car.clone());
+                }
+            }
+
+            if (this.groups != null) {
+                cloned.setGroups(new HashSet<>());
+                for (Group group : this.groups) {
+//                    cloned.getGroups().add(group.clone());
+                }
+            }
+
+            // deep data
+            if (this.data != null) {
+                cloned.setData(new HashMap<>(this.data));
+            }
+
+            return cloned;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError("Cloning not supported", e);
+        }
+    }
+
+    @Override
+    public int compareTo(User other) {
+        return this.id.compareTo(other.getId());
+    }
+
+    // toString() 方法: 返回 User 对象的字符串表示
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", data=" + data +
+                ", cars=" + cars +
+                ", groups=" + groups +
+                '}';
     }
 }
