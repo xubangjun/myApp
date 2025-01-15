@@ -1,7 +1,9 @@
 package com.robot.runnerz.example.user;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.robot.runnerz.example.car.Car;
 
+import java.util.Set;
 import java.util.UUID;
 
 public class UserMapper {
@@ -18,7 +20,13 @@ public class UserMapper {
         user.setId(UUID.randomUUID());
         user.setName(dto.getName());
         user.setEmail(dto.getEmail());
-        user.setCars(dto.getCar());
+        Set<Car> cars = dto.getCar();
+        for (Car car : cars) {
+            // 给每个 Car 设置 userId
+            car.setId(UUID.randomUUID());
+            car.setUser(user);
+        }
+        user.setCars(cars);
         user.setData(dto.getData());
         return user;
     }

@@ -39,7 +39,7 @@ public class User {
 //    private JsonNode data;
     private Map<String, Object> data;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private Set<Car> cars;    // Getters and Setters
     // ... JsonManagerReference
     //
@@ -55,12 +55,19 @@ public class User {
     private Set<Group> groups = new HashSet<>();
 
     public UserResponseEntity toUserResponseEntity(User user) {
+        Set<Car> cars = user.getCars();
+        if (cars != null) {
+            for (Car car : cars) {
+                car.setUser(this);
+                car.setId(UUID.randomUUID());
+            }
+        }
 
         return  UserResponseEntity.builder().
                 id(user.getId()).
                 name(user.getName()).
                 email(user.getEmail()).
-                car(user.getCars()).
+                car(cars).
                 data(user.getData()).
                 groups(user.getGroups()).
                 build();

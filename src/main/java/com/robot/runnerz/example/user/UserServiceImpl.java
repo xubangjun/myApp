@@ -35,6 +35,7 @@ public class UserServiceImpl implements UserService {
     public UserDto createUser(UserDto userDto) {
         User user = UserMapper.toEntity(userDto);
         System.out.println("Data type: " + user.getData().getClass().getName());
+
         User savedUser = userRepository.save(user);
         return UserMapper.toDto(savedUser);
     }
