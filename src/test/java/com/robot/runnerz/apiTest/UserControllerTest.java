@@ -40,9 +40,11 @@ public class UserControllerTest {
 
         // Convert the Map to JsonNode
         JsonNode jsonNode = objectMapper.valueToTree(map);
+
+        Map<Object, Object> map1 = new HashMap<>();
         // Mock data
         UUID userId = UUID.randomUUID();
-        UserResponseEntity mockUser = new UserResponseEntity(userId, "John Doe", "john.doe@example.com", new HashSet<>(), jsonNode);
+        UserResponseEntity mockUser = new UserResponseEntity(userId, "John Doe", "john.doe@example.com", new HashSet<>(), new HashSet<>(), map1);
         Mockito.when(userServiceImpl.getUserById(userId)).thenReturn(mockUser);
 
         // test

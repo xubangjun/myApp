@@ -23,7 +23,9 @@ public class UserDto {
 
     private Set<Car> car;
 
-    private JsonNode data;
+//    private JsonNode data;
+
+    private Map data;
 
     // Getters and Setters
     // ...

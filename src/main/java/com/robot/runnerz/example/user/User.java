@@ -1,9 +1,10 @@
 package com.robot.runnerz.example.user;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Type;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.robot.runnerz.example.car.Car;
 import com.robot.runnerz.example.car.Group;
 import com.robot.runnerz.example.utils.JpaConverterJson;
+import com.vladmihalcea.hibernate.type.json.JsonType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +12,7 @@ import lombok.Setter;
 import org.antlr.v4.runtime.misc.NotNull;
 
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
@@ -33,7 +35,9 @@ public class User {
 
     @Column(columnDefinition = "jsonb")
     @Convert(converter = JpaConverterJson.class)
-    private JsonNode data;
+    @Type(JsonType.class)
+//    private JsonNode data;
+    private Map<String, Object> data;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private Set<Car> cars;    // Getters and Setters
@@ -58,6 +62,7 @@ public class User {
                 email(user.getEmail()).
                 car(user.getCars()).
                 data(user.getData()).
+                groups(user.getGroups()).
                 build();
     }
 }

@@ -2,8 +2,10 @@ package com.robot.runnerz.example.user;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.robot.runnerz.example.car.Car;
+import com.robot.runnerz.example.car.Group;
 import lombok.*;
 
+import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
@@ -21,5 +23,9 @@ public class UserResponseEntity {
 
     private Set<Car> car;
 
-    private JsonNode data;
+//    private JsonNode data;
+
+    private Set<Group>  groups;
+
+    private Map data;
 }
