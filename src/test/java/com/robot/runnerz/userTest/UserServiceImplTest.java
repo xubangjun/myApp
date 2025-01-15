@@ -62,7 +62,7 @@ public class UserServiceImplTest {
         });
 
         // Verify exception message
-        assertEquals("User not found with id: 2", exception.getMessage());
+        assertEquals("User not found with id: " +userId.toString(), exception.getMessage());
 
         // Verify repository interaction
         Mockito.verify(userRepository, Mockito.times(1)).findById(userId);
