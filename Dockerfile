@@ -1,16 +1,16 @@
-# 基于官方的 OpenJDK 运行时镜像
+# Based on the official OpenJDK runtime image
 FROM openjdk:17-jdk-slim
 
-# 设置工作目录
+# set up file
 WORKDIR /app
 
-# 将打包的 JAR 文件复制到镜像中
+# Copy the packaged JAR file to the image
 COPY runnerz-0.0.1-SNAPSHOT.jar /app/app.jar
 
 #ENV SPRING_PROFILES_ACTIVE=docker
 
-# 暴露应用程序运行的端口（可根据你的应用程序设置）
+# Expose the port the application is running on (can be set according to your application)
 EXPOSE 8080
 
-# 运行 Java 应用程序
+# run java application
 ENTRYPOINT ["java", "-jar", "app.jar"]
