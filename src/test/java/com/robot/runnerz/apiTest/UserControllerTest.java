@@ -48,7 +48,7 @@ public class UserControllerTest {
         Mockito.when(userServiceImpl.getUserById(userId)).thenReturn(mockUser);
 
         // test
-        mockMvc.perform(get("/users/{id}", userId)) // 假设你的控制器路径是 "/users"
+        mockMvc.perform(get("/users/{id}", userId))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(userId.toString()))
                 .andExpect(jsonPath("$.name").value("John Doe"))
