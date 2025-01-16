@@ -55,8 +55,11 @@ public class User implements Cloneable, Comparable<User>{
         Set<Car> cars = user.getCars();
         if (cars != null) {
             for (Car car : cars) {
-                car.setUser(this);
-                car.setId(UUID.randomUUID());
+                if (car.getUser() == null) {
+                    car.setUser(this);
+                    car.setId(UUID.randomUUID());
+                }
+
             }
         }
 
