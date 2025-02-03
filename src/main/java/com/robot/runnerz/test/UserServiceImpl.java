@@ -11,9 +11,10 @@ public class UserServiceImpl implements UserService {
     }
 
     public UserDto getUserById(Long id) {
-        User user = userRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
-        return UserMapper.toDto(user);
+        // User user = userRepository.findById(id)
+        //         .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
+        UserDto user = new UserDto();
+        return user;
     }
 
     public UserDto createUser(UserDto userDto) {
